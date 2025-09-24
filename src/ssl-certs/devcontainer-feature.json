@@ -1,6 +1,6 @@
 {
   "id": "ssl-certs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "SSL Certificates",
   "description": "Install custom CA SSL certificates for corporate environments",
   "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/ssl-certs",
