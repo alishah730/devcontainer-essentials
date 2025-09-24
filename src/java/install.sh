@@ -8,12 +8,24 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/library_scripts.sh"
 
 # Feature options - Use _BUILD_ARG_ prefixed variables from devcontainer feature system
-JAVA_VERSION=${_BUILD_ARG_VERSION:-"latest"}
-INSTALL_MAVEN=${_BUILD_ARG_INSTALLMAVEN:-"true"}
-INSTALL_GRADLE=${_BUILD_ARG_INSTALLGRADLE:-"false"}
-JDK_DISTRO=${_BUILD_ARG_JDKDISTRO:-"openjdk"}
+echo "Debug: _BUILD_ARG_VERSION = '$_BUILD_ARG_VERSION'"
+echo "Debug: VERSION = '$VERSION'"
+
+# Try both _BUILD_ARG_VERSION and VERSION for compatibility
+if [ -n "$_BUILD_ARG_VERSION" ]; then
+    JAVA_VERSION="$_BUILD_ARG_VERSION"
+elif [ -n "$VERSION" ]; then
+    JAVA_VERSION="$VERSION"
+else
+    JAVA_VERSION="latest"
+fi
+
+INSTALL_MAVEN=${_BUILD_ARG_INSTALLMAVEN:-${INSTALLMAVEN:-"true"}}
+INSTALL_GRADLE=${_BUILD_ARG_INSTALLGRADLE:-${INSTALLGRADLE:-"false"}}
+JDK_DISTRO=${_BUILD_ARG_JDKDISTRO:-${JDKDISTRO:-"openjdk"}}
 
 echo "Starting installation of Java ${JAVA_VERSION} (${JDK_DISTRO})..."
+echo "Debug: Final JAVA_VERSION = '$JAVA_VERSION'"
 
 # Update package lists
 echo "Updating package lists..."
@@ -33,6 +45,7 @@ apt-get install -y \
 # Install Java
 echo "Installing Java ${JAVA_VERSION}..."
 install_java() {
+    echo "Debug: Entering case statement with JAVA_VERSION='$JAVA_VERSION'"
     case $JAVA_VERSION in
         "8")
             if [ "$JDK_DISTRO" = "temurin" ]; then
@@ -60,16 +73,20 @@ install_java() {
             fi
             ;;
         "16")
+            echo "Debug: Installing Java 16 with distribution: $JDK_DISTRO"
             if [ "$JDK_DISTRO" = "temurin" ]; then
+                echo "Debug: Installing Eclipse Temurin 16"
                 wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add -
                 echo "deb https://packages.adoptium.net/artifactory/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/adoptium.list
                 apt-get update
                 apt-get install -y temurin-16-jdk
                 export JAVA_HOME=/usr/lib/jvm/temurin-16-jdk-amd64
             else
+                echo "Debug: Installing OpenJDK 16"
                 apt-get install -y openjdk-16-jdk
                 export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
             fi
+            echo "Debug: Java 16 installation completed, JAVA_HOME=$JAVA_HOME"
             ;;
         "17")
             if [ "$JDK_DISTRO" = "temurin" ]; then
@@ -96,11 +113,15 @@ install_java() {
             fi
             ;;
         "latest")
+            echo "Debug: Installing latest Java (default-jdk)"
             # Install the latest available OpenJDK
             apt-get install -y default-jdk
             export JAVA_HOME=/usr/lib/jvm/default-java
+            echo "Debug: Latest Java installation completed, JAVA_HOME=$JAVA_HOME"
             ;;
         *)
+            echo "Debug: Unsupported Java version: '${JAVA_VERSION}'"
+            echo "Debug: Available versions are: 8, 11, 16, 17, 21, latest"
             echo "Unsupported Java version: ${JAVA_VERSION}"
             exit 1
             ;;

@@ -8,10 +8,23 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/library_scripts.sh"
 
 # Feature options - Use _BUILD_ARG_ prefixed variables from devcontainer feature system
-NODE_VERSION=${_BUILD_ARG_VERSION:-"lts"}
-INSTALL_YARN=${_BUILD_ARG_INSTALLYARN:-"true"}
-INSTALL_PNPM=${_BUILD_ARG_INSTALLPNPM:-"false"}
-NODE_PACKAGE_MANAGER=${_BUILD_ARG_NODEPACKAGEMANAGER:-"npm"}
+echo "Debug: _BUILD_ARG_VERSION = '$_BUILD_ARG_VERSION'"
+echo "Debug: VERSION = '$VERSION'"
+
+# Try both _BUILD_ARG_VERSION and VERSION for compatibility
+if [ -n "$_BUILD_ARG_VERSION" ]; then
+    NODE_VERSION="$_BUILD_ARG_VERSION"
+elif [ -n "$VERSION" ]; then
+    NODE_VERSION="$VERSION"
+else
+    NODE_VERSION="lts"
+fi
+
+INSTALL_YARN=${_BUILD_ARG_INSTALLYARN:-${INSTALLYARN:-"true"}}
+INSTALL_PNPM=${_BUILD_ARG_INSTALLPNPM:-${INSTALLPNPM:-"false"}}
+NODE_PACKAGE_MANAGER=${_BUILD_ARG_NODEPACKAGEMANAGER:-${NODEPACKAGEMANAGER:-"npm"}}
+
+echo "Debug: Final NODE_VERSION = '$NODE_VERSION'"
 
 echo "Starting installation of Node.js ${NODE_VERSION}..."
 

@@ -8,11 +8,11 @@
             }
         }
     },
-    "install_lts_version": {
+    "install_non_default_version": {
         "image": "ubuntu:noble",
         "features": {
             "java": {
-                "version": "lts"
+                "version": "16"
             }
         }
     }

@@ -8,11 +8,17 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/library_scripts.sh"
 
 # Feature options - Use _BUILD_ARG_ prefixed variables from devcontainer feature system
-CERTS_PATH=${_BUILD_ARG_CERTSPATH:-".devcontainer/certs"}
-UPDATE_CA_BUNDLE=${_BUILD_ARG_UPDATECABUNDLE:-"true"}
-TRUST_JAVA_CERTS=${_BUILD_ARG_TRUSTJAVACERTS:-"true"}
-TRUST_NODE_CERTS=${_BUILD_ARG_TRUSTNODECERTS:-"true"}
-VERBOSE_LOGGING=${_BUILD_ARG_VERBOSELOGGING:-"false"}
+echo "Debug: _BUILD_ARG_CERTSPATH = '$_BUILD_ARG_CERTSPATH'"
+echo "Debug: CERTSPATH = '$CERTSPATH'"
+
+# Try both _BUILD_ARG_ and non-prefixed variables for compatibility
+CERTS_PATH=${_BUILD_ARG_CERTSPATH:-${CERTSPATH:-".devcontainer/certs"}}
+UPDATE_CA_BUNDLE=${_BUILD_ARG_UPDATECABUNDLE:-${UPDATECABUNDLE:-"true"}}
+TRUST_JAVA_CERTS=${_BUILD_ARG_TRUSTJAVACERTS:-${TRUSTJAVACERTS:-"true"}}
+TRUST_NODE_CERTS=${_BUILD_ARG_TRUSTNODECERTS:-${TRUSTNODECERTS:-"true"}}
+VERBOSE_LOGGING=${_BUILD_ARG_VERBOSELOGGING:-${VERBOSELOGGING:-"false"}}
+
+echo "Debug: Final CERTS_PATH = '$CERTS_PATH'"
 
 # Enable verbose logging if requested
 if [ "$VERBOSE_LOGGING" = "true" ]; then
