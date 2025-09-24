@@ -1,0 +1,39 @@
+{
+  "name": "Corporate Full-Stack Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+      "certsPath": ".devcontainer/corporate-certs",
+      "updateCaBundle": true,
+      "trustJavaCerts": true,
+      "trustNodeCerts": true,
+      "verboseLogging": false
+    },
+    "ghcr.io/alishah730/all-devcontainer/java:1": {
+      "version": "17",
+      "installMaven": true,
+      "installGradle": true
+    },
+    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+      "version": "lts",
+      "installYarn": true,
+      "installPnpm": false,
+      "nodePackageManager": "yarn"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.vscode-eslint",
+        "ms-vscode.vscode-docker",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "forwardPorts": [8080, 3000, 5000],
+  "postCreateCommand": "echo 'Corporate full-stack environment ready with SSL certificates!'",
+  "remoteUser": "vscode"
+}

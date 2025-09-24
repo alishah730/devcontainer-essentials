@@ -1,0 +1,63 @@
+{
+  "id": "java",
+  "version": "1.0.0",
+  "name": "Java (OpenJDK)",
+  "description": "Install Java (OpenJDK) with support for versions 8 through latest",
+  "documentationURL": "https://github.com/alishah730/all-devcontainer/tree/main/src/java",
+  "licenseURL": "https://github.com/alishah730/all-devcontainer/blob/main/LICENSE",
+  "keywords": [
+    "java",
+    "jdk",
+    "openjdk",
+    "development",
+    "maven",
+    "gradle"
+  ],
+  "options": {
+    "version": {
+      "type": "string",
+      "enum": [
+        "8",
+        "11",
+        "17",
+        "21",
+        "latest"
+      ],
+      "default": "17",
+      "description": "Select the Java version to install"
+    },
+    "installMaven": {
+      "type": "boolean",
+      "default": true,
+      "description": "Install Apache Maven for Java project management"
+    },
+    "installGradle": {
+      "type": "boolean",
+      "default": false,
+      "description": "Install Gradle for Java project management"
+    },
+    "jdkDistro": {
+      "type": "string",
+      "enum": [
+        "openjdk",
+        "temurin"
+      ],
+      "default": "openjdk",
+      "description": "Java distribution to install"
+    }
+  },
+  "containerEnv": {
+    "JAVA_HOME": "/usr/lib/jvm/java-${version}-openjdk-amd64"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java"
+      ]
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}

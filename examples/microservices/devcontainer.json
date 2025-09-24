@@ -1,0 +1,30 @@
+{
+  "name": "Java Microservices Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/alishah730/all-devcontainer/java:1": {
+      "version": "21",
+      "installMaven": true,
+      "installGradle": true
+    },
+    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+      "version": "lts",
+      "installYarn": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "ms-vscode.vscode-docker",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "forwardPorts": [8080, 8081, 8082, 3000],
+  "postCreateCommand": "echo 'Microservices development environment ready!'",
+  "remoteUser": "vscode"
+}

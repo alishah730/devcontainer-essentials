@@ -1,0 +1,69 @@
+{
+  "id": "nodejs",
+  "version": "1.0.0",
+  "name": "Node.js",
+  "description": "Install Node.js with support for versions 10 through latest",
+  "documentationURL": "https://github.com/alishah730/all-devcontainer/tree/main/src/nodejs",
+  "licenseURL": "https://github.com/alishah730/all-devcontainer/blob/main/LICENSE",
+  "keywords": [
+    "nodejs",
+    "node",
+    "npm",
+    "yarn",
+    "javascript",
+    "typescript",
+    "development"
+  ],
+  "options": {
+    "version": {
+      "type": "string",
+      "enum": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "20",
+        "latest",
+        "lts"
+      ],
+      "default": "lts",
+      "description": "Select the Node.js version to install"
+    },
+    "installYarn": {
+      "type": "boolean",
+      "default": true,
+      "description": "Install Yarn package manager"
+    },
+    "installPnpm": {
+      "type": "boolean",
+      "default": false,
+      "description": "Install pnpm package manager"
+    },
+    "nodePackageManager": {
+      "type": "string",
+      "enum": [
+        "npm",
+        "yarn",
+        "pnpm"
+      ],
+      "default": "npm",
+      "description": "Default package manager to use"
+    }
+  },
+  "containerEnv": {
+    "NODE_PATH": "/usr/local/lib/node_modules"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.vscode-eslint",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}

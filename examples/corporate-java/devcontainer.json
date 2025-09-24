@@ -1,0 +1,40 @@
+{
+  "name": "Corporate Java Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+      "certsPath": ".devcontainer/certs",
+      "updateCaBundle": true,
+      "trustJavaCerts": true,
+      "trustNodeCerts": false,
+      "verboseLogging": true
+    },
+    "ghcr.io/alishah730/all-devcontainer/java:1": {
+      "version": "17",
+      "installMaven": true,
+      "installGradle": false,
+      "jdkDistro": "temurin"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "ms-vscode.vscode-json"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/lib/jvm/temurin-17-jdk-amd64"
+          }
+        ],
+        "java.compile.nullAnalysis.mode": "automatic"
+      }
+    }
+  },
+  "forwardPorts": [8080],
+  "postCreateCommand": "echo 'Corporate Java environment ready with SSL certificates!'",
+  "remoteUser": "vscode"
+}

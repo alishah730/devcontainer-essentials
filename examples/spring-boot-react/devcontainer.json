@@ -1,0 +1,38 @@
+{
+  "name": "Spring Boot + React Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/alishah730/all-devcontainer/java:1": {
+      "version": "17",
+      "installMaven": true,
+      "installGradle": false
+    },
+    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+      "version": "18",
+      "installYarn": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-json"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/lib/jvm/java-17-openjdk-amd64"
+          }
+        ],
+        "java.compile.nullAnalysis.mode": "automatic"
+      }
+    }
+  },
+  "forwardPorts": [8080, 3000],
+  "postCreateCommand": "echo 'Spring Boot + React development environment ready!'",
+  "remoteUser": "vscode"
+}

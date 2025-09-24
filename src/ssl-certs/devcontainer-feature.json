@@ -1,0 +1,46 @@
+{
+  "id": "ssl-certs",
+  "version": "1.0.0",
+  "name": "SSL Certificates",
+  "description": "Install custom CA SSL certificates for corporate environments",
+  "documentationURL": "https://github.com/alishah730/all-devcontainer/tree/main/src/ssl-certs",
+  "licenseURL": "https://github.com/alishah730/all-devcontainer/blob/main/LICENSE",
+  "keywords": [
+    "ssl",
+    "certificates",
+    "ca",
+    "corporate",
+    "security",
+    "tls"
+  ],
+  "options": {
+    "certsPath": {
+      "type": "string",
+      "default": ".devcontainer/certs",
+      "description": "Path to the certificates folder relative to workspace root"
+    },
+    "updateCaBundle": {
+      "type": "boolean",
+      "default": true,
+      "description": "Update the system CA bundle after installing certificates"
+    },
+    "trustJavaCerts": {
+      "type": "boolean",
+      "default": true,
+      "description": "Add certificates to Java truststore (if Java is available)"
+    },
+    "trustNodeCerts": {
+      "type": "boolean",
+      "default": true,
+      "description": "Configure Node.js to use system certificates"
+    },
+    "verboseLogging": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable verbose logging for certificate installation"
+    }
+  },
+  "installsAfter": [],
+  "init": true,
+  "privileged": true
+}

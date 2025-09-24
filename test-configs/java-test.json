@@ -1,0 +1,13 @@
+{
+  "name": "Test Java Feature",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "./src/java": {
+      "version": "17",
+      "installMaven": true,
+      "installGradle": false,
+      "jdkDistro": "openjdk"
+    }
+  },
+  "postCreateCommand": "echo 'Java container ready for testing'"
+}

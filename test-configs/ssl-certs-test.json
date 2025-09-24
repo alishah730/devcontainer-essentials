@@ -1,0 +1,14 @@
+{
+  "name": "Test SSL Certificates Feature",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "./src/ssl-certs": {
+      "certsPath": ".devcontainer/test-certs",
+      "updateCaBundle": true,
+      "trustJavaCerts": true,
+      "trustNodeCerts": true,
+      "verboseLogging": true
+    }
+  },
+  "postCreateCommand": "echo 'SSL certificates container ready for testing'"
+}

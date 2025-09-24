@@ -1,0 +1,104 @@
+{
+  "java-default": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "java": {}
+    }
+  },
+  "java-custom": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04", 
+    "features": {
+      "java": {
+        "version": "11",
+        "installMaven": true,
+        "installGradle": true,
+        "jdkDistro": "temurin"
+      }
+    }
+  },
+  "java-minimal": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "java": {
+        "version": "8",
+        "installMaven": false,
+        "installGradle": false
+      }
+    }
+  },
+  "nodejs-default": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "nodejs": {}
+    }
+  },
+  "nodejs-custom": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "nodejs": {
+        "version": "18",
+        "installYarn": true,
+        "installPnpm": true,
+        "nodePackageManager": "yarn"
+      }
+    }
+  },
+  "nodejs-minimal": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "nodejs": {
+        "version": "16",
+        "installYarn": false,
+        "installPnpm": false
+      }
+    }
+  },
+  "java-nodejs-combined": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "java": {
+        "version": "17",
+        "installMaven": true
+      },
+      "nodejs": {
+        "version": "lts",
+        "installYarn": true
+      }
+    }
+  },
+  "ssl-certs-default": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "ssl-certs": {}
+    }
+  },
+  "ssl-certs-custom": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "ssl-certs": {
+        "certsPath": ".devcontainer/custom-certs",
+        "updateCaBundle": true,
+        "trustJavaCerts": true,
+        "trustNodeCerts": true,
+        "verboseLogging": true
+      }
+    }
+  },
+  "corporate-environment": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+      "ssl-certs": {
+        "certsPath": ".devcontainer/certs",
+        "verboseLogging": true
+      },
+      "java": {
+        "version": "17",
+        "installMaven": true
+      },
+      "nodejs": {
+        "version": "lts",
+        "installYarn": true
+      }
+    }
+  }
+}
