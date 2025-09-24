@@ -72,7 +72,7 @@ ghcr.io/alishah730/REPOSITORY-NAME/FEATURE-NAME:VERSION
 
 Example:
 ```
-ghcr.io/alishah730/all-devcontainer/java-node:1
+ghcr.io/alishah730/devcontainer-essentials/java-node:1
 ```
 
 ## Using Published Features
@@ -82,7 +82,7 @@ Once published, users can reference your features in their `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java-node:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java-node:1": {
       "javaVersion": "17",
       "nodeVersion": "lts"
     }

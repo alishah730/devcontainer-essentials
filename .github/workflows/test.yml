@@ -17,8 +17,7 @@ jobs:
           - nodejs
           - ssl-certs
         baseImage:
-          - ubuntu:22.04
-          - mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+          - mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
       - uses: actions/checkout@v4
 

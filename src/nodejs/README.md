@@ -16,7 +16,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "lts",
       "installYarn": true,
       "installPnpm": false,
@@ -41,7 +41,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {}
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {}
   }
 }
 ```
@@ -50,7 +50,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "18",
       "installYarn": true,
       "nodePackageManager": "yarn"
@@ -63,7 +63,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "latest",
       "installYarn": true,
       "installPnpm": true,
@@ -77,7 +77,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "14",
       "installYarn": false,
       "installPnpm": false

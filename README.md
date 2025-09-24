@@ -12,7 +12,7 @@ Install Java (OpenJDK) in your devcontainer with support for multiple versions a
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "17",
       "installMaven": true
     }
@@ -30,7 +30,7 @@ Install Node.js in your devcontainer with support for multiple versions and pack
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "lts",
       "installYarn": true
     }
@@ -48,7 +48,7 @@ Install custom CA SSL certificates for corporate environments. Runs before other
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {
       "certsPath": ".devcontainer/certs"
     }
   }
@@ -66,14 +66,14 @@ Add any of these features to your `devcontainer.json` file:
   "name": "My Development Environment",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {
       "certsPath": ".devcontainer/certs"
     },
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "17",
       "installMaven": true
     },
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "lts",
       "installYarn": true
     }
@@ -123,6 +123,6 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Support
 
-- 📖 [Documentation](https://github.com/alishah730/all-devcontainer)
-- 🐛 [Issues](https://github.com/alishah730/all-devcontainer/issues)
-- 💬 [Discussions](https://github.com/alishah730/all-devcontainer/discussions)
+- 📖 [Documentation](https://github.com/alishah730/devcontainer-essentials)
+- 🐛 [Issues](https://github.com/alishah730/devcontainer-essentials/issues)
+- 💬 [Discussions](https://github.com/alishah730/devcontainer-essentials/discussions)

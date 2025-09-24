@@ -1,6 +1,6 @@
 {
   "name": "Test SSL Certificates Feature",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "./src/ssl-certs": {
       "certsPath": ".devcontainer/test-certs",

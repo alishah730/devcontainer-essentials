@@ -29,7 +29,7 @@ This devcontainer feature automatically installs custom CA SSL certificates for 
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {}
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {}
   }
 }
 ```
@@ -39,7 +39,7 @@ This devcontainer feature automatically installs custom CA SSL certificates for 
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {
       "certsPath": ".devcontainer/certificates",
       "updateCaBundle": true,
       "trustJavaCerts": true,
@@ -78,14 +78,14 @@ This devcontainer feature automatically installs custom CA SSL certificates for 
   "name": "Corporate Development Environment",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {
       "certsPath": ".devcontainer/corporate-certs",
       "verboseLogging": true
     },
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "17"
     },
-    "ghcr.io/alishah730/all-devcontainer/nodejs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/nodejs:1": {
       "version": "lts"
     }
   }
@@ -96,7 +96,7 @@ This devcontainer feature automatically installs custom CA SSL certificates for 
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {
       "certsPath": "security/certificates"
     }
   }
@@ -107,7 +107,7 @@ This devcontainer feature automatically installs custom CA SSL certificates for 
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/ssl-certs:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/ssl-certs:1": {
       "trustNodeCerts": false,
       "trustJavaCerts": true
     }

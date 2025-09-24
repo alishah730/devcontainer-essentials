@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "name": "Node.js",
   "description": "Install Node.js with support for versions 10 through latest",
-  "documentationURL": "https://github.com/alishah730/all-devcontainer/tree/main/src/nodejs",
-  "licenseURL": "https://github.com/alishah730/all-devcontainer/blob/main/LICENSE",
+  "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/nodejs",
+  "licenseURL": "https://github.com/alishah730/devcontainer-essentials/blob/main/LICENSE",
   "keywords": [
     "nodejs",
     "node",

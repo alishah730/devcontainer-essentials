@@ -1,6 +1,6 @@
 {
   "name": "Test Node.js Feature",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "./src/nodejs": {
       "version": "lts",

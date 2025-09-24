@@ -16,7 +16,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "17",
       "installMaven": true,
       "installGradle": false,
@@ -41,7 +41,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java:1": {}
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {}
   }
 }
 ```
@@ -50,7 +50,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "17",
       "installMaven": true,
       "jdkDistro": "temurin"
@@ -63,7 +63,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "8",
       "installMaven": true,
       "installGradle": false
@@ -76,7 +76,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/alishah730/all-devcontainer/java:1": {
+    "ghcr.io/alishah730/devcontainer-essentials/java:1": {
       "version": "21",
       "installMaven": false,
       "installGradle": true,
