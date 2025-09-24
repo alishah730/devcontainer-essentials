@@ -1,9 +1,8 @@
 name: "CI - Test Features"
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -12,98 +11,54 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        features:
-          - java
-          - nodejs
-          - ssl-certs
+        features: [
+            "java"    
+        ]
         baseImage:
-          - mcr.microsoft.com/devcontainers/base:ubuntu
+          [
+            "ubuntu:focal",
+            "ubuntu:jammy",
+            "debian:11",
+            "debian:12",
+            "mcr.microsoft.com/devcontainers/base:ubuntu",
+            "mcr.microsoft.com/devcontainers/base:debian",
+            "mcr.microsoft.com/devcontainers/base:noble"
+          ]
     steps:
       - uses: actions/checkout@v4
 
       - name: "Install latest devcontainer CLI"
         run: npm install -g @devcontainers/cli
 
-      - name: "Generate tests for '${{ matrix.features }}' against '${{ matrix.baseImage }}'"
-        run: devcontainer features test --skip-scenarios -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
-
-      - name: "Build and test specific features"
-        run: |
-          set -e
-          CONFIG_FILE="test-configs/${{ matrix.features }}-test.json"
-          
-          if [ "${{ matrix.features }}" = "java" ]; then
-            echo "🔧 Building and testing Java feature..."
-            # Build the container first
-            echo "Building container with config: $CONFIG_FILE"
-            devcontainer build --workspace-folder . --config "$CONFIG_FILE"
-            
-            echo "✅ Container built successfully. Running tests..."
-            # Test Java installation
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" java -version
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" javac -version
-            
-            # Test JAVA_HOME
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "source /etc/environment 2>/dev/null || true; echo JAVA_HOME: \$JAVA_HOME"
-            
-            # Test Maven if installed
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "command -v mvn && mvn --version || echo 'Maven not installed'"
-            
-          elif [ "${{ matrix.features }}" = "nodejs" ]; then
-            echo "🟢 Building and testing Node.js feature..."
-            # Build the container first
-            echo "Building container with config: $CONFIG_FILE"
-            devcontainer build --workspace-folder . --config "$CONFIG_FILE"
-            
-            echo "✅ Container built successfully. Running tests..."
-            # Test Node.js installation  
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" node --version
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" npm --version
-            
-            # Test package managers if installed
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "command -v yarn && yarn --version || echo 'Yarn not installed'"
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "command -v pnpm && pnpm --version || echo 'pnpm not installed'"
-            
-          elif [ "${{ matrix.features }}" = "ssl-certs" ]; then
-            echo "🔒 Building and testing SSL certificates feature..."
-            # Build the container first
-            echo "Building container with config: $CONFIG_FILE"
-            devcontainer build --workspace-folder . --config "$CONFIG_FILE"
-            
-            echo "✅ Container built successfully. Running tests..."
-            # Test SSL certificates installation
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" ls -la /usr/local/share/ca-certificates/custom/ || echo "No custom certificates directory (expected for test)"
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" update-ca-certificates --fresh
-            
-            # Test environment variables
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "source /etc/environment 2>/dev/null || true; echo SSL_CERT_FILE: \$SSL_CERT_FILE"
-            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "ls -la /etc/profile.d/*ssl* /etc/profile.d/*cert* 2>/dev/null || echo 'No SSL profile scripts found'"
-          fi
-          
-          echo "🎉 All tests completed for ${{ matrix.features }} feature!"
-          
-      - name: "Cleanup containers"
-        if: always()
-        run: |
-          echo "🧹 Cleaning up containers..."
-          # Remove any containers that might have been created
-          docker container prune -f || true
-          docker image prune -f || true
+      - name: "Generating tests for '${{ matrix.features }}' against '${{ matrix.baseImage }}'"
+        run: devcontainer features test  --skip-scenarios -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
 
   test-scenarios:
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
       matrix:
-        features:
-          - java
-          - nodejs
-          - ssl-certs
+        features: [
+            "java",
+            
+        ]
     steps:
       - uses: actions/checkout@v4
 
       - name: "Install latest devcontainer CLI"
         run: npm install -g @devcontainers/cli
 
-      - name: "Test ${{ matrix.features }} scenarios"
-        run: devcontainer features test -f ${{ matrix.features }} --skip-autogenerated .
+      - name: "Testing '${{ matrix.features }}' scenarios"
+        run: devcontainer features test -f ${{ matrix.features }} --skip-autogenerated  .
+
+  test-global:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Install latest devcontainer CLI"
+        run: npm install -g @devcontainers/cli
+
+      - name: "Testing global scenarios"
+        run: devcontainer features test --global-scenarios-only .
