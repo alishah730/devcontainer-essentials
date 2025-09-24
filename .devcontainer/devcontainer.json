@@ -22,5 +22,5 @@
     }
   },
   "postCreateCommand": "npm install -g @devcontainers/cli",
-  "remoteUser": "vscode"
+  "remoteUser": "node"
 }

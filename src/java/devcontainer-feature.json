@@ -1,6 +1,6 @@
 {
   "id": "java",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Java (OpenJDK)",
   "description": "Install Java (OpenJDK) with support for versions 8 through latest",
   "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/java",
