@@ -1,7 +1,7 @@
 
-# Node.js (nodejs)
+# nodejs from devcontainer-essentials (nodejs)
 
-Install Node.js with support for versions 10 through latest
+Install Node.js JavaScript runtime with npm, optional Yarn and pnpm package managers. Supports versions 10, 12, 14, 16, 18, 20, LTS, and latest. Perfect for web development, APIs, and full-stack applications.
 
 ## Example Usage
 
@@ -15,10 +15,10 @@ Install Node.js with support for versions 10 through latest
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Select the Node.js version to install | string | lts |
-| installYarn | Install Yarn package manager | boolean | true |
-| installPnpm | Install pnpm package manager | boolean | false |
-| nodePackageManager | Default package manager to use | string | npm |
+| version | Node.js version: 10-20 (specific), 'lts' (Long Term Support - recommended), or 'latest' (cutting edge) | string | lts |
+| installYarn | Install Yarn package manager - fast, reliable, and secure dependency management | boolean | true |
+| installPnpm | Install pnpm package manager - performant npm alternative with efficient disk space usage | boolean | false |
+| nodePackageManager | Set default package manager: 'npm' (built-in), 'yarn' (if installed), or 'pnpm' (if installed) | string | npm |
 
 ## Customizations
 
