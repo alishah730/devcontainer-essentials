@@ -1,7 +1,7 @@
 
-# SSL Certificates (ssl-certs)
+# ssl-certs from devcontainer-essentials (ssl-certs)
 
-Install custom CA SSL certificates for corporate environments
+Automatically install custom CA SSL certificates for corporate environments with proxy servers, firewalls, and SSL inspection. Supports .crt, .pem, .cer, and .p7b certificate formats with Java truststore and Node.js integration.
 
 ## Example Usage
 
@@ -15,11 +15,11 @@ Install custom CA SSL certificates for corporate environments
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| certsPath | Path to the certificates folder relative to workspace root | string | .devcontainer/certs |
+| certsPath | Path to the certificates folder relative to workspace root (supports .crt, .pem, .cer, .p7b files) | string | .devcontainer/certs |
 | updateCaBundle | Update the system CA bundle after installing certificates | boolean | true |
 | trustJavaCerts | Add certificates to Java truststore (if Java is available) | boolean | true |
 | trustNodeCerts | Configure Node.js to use system certificates | boolean | true |
-| verboseLogging | Enable verbose logging for certificate installation | boolean | false |
+| verboseLogging | Enable detailed logging during certificate installation for troubleshooting corporate network issues | boolean | false |
 
 
 
