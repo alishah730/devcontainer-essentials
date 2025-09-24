@@ -38,6 +38,16 @@
   "options": {
     "version": {
       "type": "string",
+      "proposals": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "20",
+        "latest",
+        "lts"
+      ],
       "enum": [
         "10",
         "12",

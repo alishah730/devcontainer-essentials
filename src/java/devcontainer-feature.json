@@ -31,7 +31,7 @@
   "options": {
     "version": {
       "type": "string",
-      "enum": [
+      "proposals": [
         "8",
         "11",
         "17",
@@ -54,7 +54,7 @@
     },
     "jdkDistro": {
       "type": "string",
-      "enum": [
+      "proposals": [
         "openjdk",
         "temurin"
       ],
