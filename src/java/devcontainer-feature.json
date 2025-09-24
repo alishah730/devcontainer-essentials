@@ -1,17 +1,32 @@
 {
   "id": "java",
-  "version": "1.0.1",
-  "name": "Java (OpenJDK)",
-  "description": "Install Java (OpenJDK) with support for versions 8 through latest",
+  "version": "1.0.0",
+  "name": "java from devcontainer-essentials",
+  "description": "Install Java Development Kit with support for OpenJDK and Eclipse Temurin distributions. Includes optional Apache Maven and Gradle build tools. Supports Java versions 8, 11, 16, 17, 21, and latest with automatic JAVA_HOME configuration.",
   "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/java",
   "licenseURL": "https://github.com/alishah730/devcontainer-essentials/blob/main/LICENSE",
   "keywords": [
     "java",
     "jdk",
     "openjdk",
-    "development",
+    "temurin",
+    "eclipse",
+    "adoptium",
     "maven",
-    "gradle"
+    "gradle",
+    "spring",
+    "springboot",
+    "android",
+    "kotlin",
+    "scala",
+    "development",
+    "programming",
+    "build",
+    "compiler",
+    "javac",
+    "enterprise",
+    "backend",
+    "microservices"
   ],
   "options": {
     "version": {
@@ -25,17 +40,17 @@
         "latest"
       ],
       "default": "latest",
-      "description": "Select the Java version to install"
+      "description": "Select Java version: 8 (legacy), 11 (LTS), 16, 17 (LTS), 21 (LTS), or latest (recommended for new projects)"
     },
     "installMaven": {
       "type": "boolean",
       "default": true,
-      "description": "Install Apache Maven for Java project management"
+      "description": "Install Apache Maven build automation and project management tool for Java projects"
     },
     "installGradle": {
       "type": "boolean",
       "default": false,
-      "description": "Install Gradle for Java project management"
+      "description": "Install Gradle modern build automation tool with Kotlin DSL support"
     },
     "jdkDistro": {
       "type": "string",
@@ -44,7 +59,7 @@
         "temurin"
       ],
       "default": "openjdk",
-      "description": "Java distribution to install"
+      "description": "Java distribution: 'openjdk' (default system packages) or 'temurin' (Eclipse Adoptium - recommended for enterprise)"
     }
   },
   "containerEnv": {
