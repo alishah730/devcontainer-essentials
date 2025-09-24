@@ -20,10 +20,11 @@
         "8",
         "11",
         "17",
+        "16",
         "21",
         "latest"
       ],
-      "default": "17",
+      "default": "latest",
       "description": "Select the Java version to install"
     },
     "installMaven": {

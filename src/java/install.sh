@@ -7,11 +7,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Import the script library
 source "${SCRIPT_DIR}/library_scripts.sh"
 
-# Feature options
-JAVA_VERSION=${VERSION:-"17"}
-INSTALL_MAVEN=${INSTALLMAVEN:-"true"}
-INSTALL_GRADLE=${INSTALLGRADLE:-"false"}
-JDK_DISTRO=${JDKDISTRO:-"openjdk"}
+# Feature options - Use _BUILD_ARG_ prefixed variables from devcontainer feature system
+JAVA_VERSION=${_BUILD_ARG_VERSION:-"latest"}
+INSTALL_MAVEN=${_BUILD_ARG_INSTALLMAVEN:-"true"}
+INSTALL_GRADLE=${_BUILD_ARG_INSTALLGRADLE:-"false"}
+JDK_DISTRO=${_BUILD_ARG_JDKDISTRO:-"openjdk"}
 
 echo "Starting installation of Java ${JAVA_VERSION} (${JDK_DISTRO})..."
 
@@ -57,6 +57,18 @@ install_java() {
             else
                 apt-get install -y openjdk-11-jdk
                 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+            fi
+            ;;
+        "16")
+            if [ "$JDK_DISTRO" = "temurin" ]; then
+                wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add -
+                echo "deb https://packages.adoptium.net/artifactory/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/adoptium.list
+                apt-get update
+                apt-get install -y temurin-16-jdk
+                export JAVA_HOME=/usr/lib/jvm/temurin-16-jdk-amd64
+            else
+                apt-get install -y openjdk-16-jdk
+                export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
             fi
             ;;
         "17")

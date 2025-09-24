@@ -7,11 +7,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Import the script library
 source "${SCRIPT_DIR}/library_scripts.sh"
 
-# Feature options
-NODE_VERSION=${VERSION:-"lts"}
-INSTALL_YARN=${INSTALLYARN:-"true"}
-INSTALL_PNPM=${INSTALLPNPM:-"false"}
-NODE_PACKAGE_MANAGER=${NODEPACKAGEMANAGER:-"npm"}
+# Feature options - Use _BUILD_ARG_ prefixed variables from devcontainer feature system
+NODE_VERSION=${_BUILD_ARG_VERSION:-"lts"}
+INSTALL_YARN=${_BUILD_ARG_INSTALLYARN:-"true"}
+INSTALL_PNPM=${_BUILD_ARG_INSTALLPNPM:-"false"}
+NODE_PACKAGE_MANAGER=${_BUILD_ARG_NODEPACKAGEMANAGER:-"npm"}
 
 echo "Starting installation of Node.js ${NODE_VERSION}..."
 

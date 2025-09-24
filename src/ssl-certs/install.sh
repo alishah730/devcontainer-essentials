@@ -7,12 +7,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Import the script library
 source "${SCRIPT_DIR}/library_scripts.sh"
 
-# Feature options
-CERTS_PATH=${CERTSPATH:-".devcontainer/certs"}
-UPDATE_CA_BUNDLE=${UPDATECABUNDLE:-"true"}
-TRUST_JAVA_CERTS=${TRUSTJAVACERTS:-"true"}
-TRUST_NODE_CERTS=${TRUSTNODECERTS:-"true"}
-VERBOSE_LOGGING=${VERBOSELOGGING:-"false"}
+# Feature options - Use _BUILD_ARG_ prefixed variables from devcontainer feature system
+CERTS_PATH=${_BUILD_ARG_CERTSPATH:-".devcontainer/certs"}
+UPDATE_CA_BUNDLE=${_BUILD_ARG_UPDATECABUNDLE:-"true"}
+TRUST_JAVA_CERTS=${_BUILD_ARG_TRUSTJAVACERTS:-"true"}
+TRUST_NODE_CERTS=${_BUILD_ARG_TRUSTNODECERTS:-"true"}
+VERBOSE_LOGGING=${_BUILD_ARG_VERBOSELOGGING:-"false"}
 
 # Enable verbose logging if requested
 if [ "$VERBOSE_LOGGING" = "true" ]; then
