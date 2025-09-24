@@ -1,8 +1,8 @@
 {
   "id": "nodejs",
-  "version": "1.0.1",
-  "name": "Node.js",
-  "description": "Install Node.js with support for versions 10 through latest",
+  "version": "1.0.0",
+  "name": "nodejs from devcontainer-essentials",
+  "description": "Install Node.js JavaScript runtime with npm, optional Yarn and pnpm package managers. Supports versions 10, 12, 14, 16, 18, 20, LTS, and latest. Perfect for web development, APIs, and full-stack applications.",
   "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/nodejs",
   "licenseURL": "https://github.com/alishah730/devcontainer-essentials/blob/main/LICENSE",
   "keywords": [
@@ -10,9 +10,30 @@
     "node",
     "npm",
     "yarn",
+    "pnpm",
     "javascript",
     "typescript",
-    "development"
+    "react",
+    "vue",
+    "angular",
+    "express",
+    "nextjs",
+    "nuxt",
+    "svelte",
+    "webpack",
+    "vite",
+    "eslint",
+    "prettier",
+    "jest",
+    "mocha",
+    "frontend",
+    "backend",
+    "fullstack",
+    "web",
+    "api",
+    "server",
+    "development",
+    "runtime"
   ],
   "options": {
     "version": {
@@ -28,17 +49,17 @@
         "lts"
       ],
       "default": "lts",
-      "description": "Select the Node.js version to install"
+      "description": "Node.js version: 10-20 (specific), 'lts' (Long Term Support - recommended), or 'latest' (cutting edge)"
     },
     "installYarn": {
       "type": "boolean",
       "default": true,
-      "description": "Install Yarn package manager"
+      "description": "Install Yarn package manager - fast, reliable, and secure dependency management"
     },
     "installPnpm": {
       "type": "boolean",
       "default": false,
-      "description": "Install pnpm package manager"
+      "description": "Install pnpm package manager - performant npm alternative with efficient disk space usage"
     },
     "nodePackageManager": {
       "type": "string",
@@ -48,7 +69,7 @@
         "pnpm"
       ],
       "default": "npm",
-      "description": "Default package manager to use"
+      "description": "Set default package manager: 'npm' (built-in), 'yarn' (if installed), or 'pnpm' (if installed)"
     }
   },
   "containerEnv": {

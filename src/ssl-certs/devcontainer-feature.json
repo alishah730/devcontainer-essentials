@@ -1,8 +1,8 @@
 {
   "id": "ssl-certs",
-  "version": "1.0.1",
-  "name": "SSL Certificates",
-  "description": "Install custom CA SSL certificates for corporate environments",
+  "version": "1.0.0",
+  "name": "ssl-certs from devcontainer-essentials",
+  "description": "Automatically install custom CA SSL certificates for corporate environments with proxy servers, firewalls, and SSL inspection. Supports .crt, .pem, .cer, and .p7b certificate formats with Java truststore and Node.js integration.",
   "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/ssl-certs",
   "licenseURL": "https://github.com/alishah730/devcontainer-essentials/blob/main/LICENSE",
   "keywords": [
@@ -10,14 +10,27 @@
     "certificates",
     "ca",
     "corporate",
+    "enterprise",
     "security",
-    "tls"
+    "tls",
+    "proxy",
+    "firewall",
+    "java",
+    "nodejs",
+    "truststore",
+    "pem",
+    "crt",
+    "p7b",
+    "pkcs7",
+    "network",
+    "company",
+    "internal"
   ],
   "options": {
     "certsPath": {
       "type": "string",
       "default": ".devcontainer/certs",
-      "description": "Path to the certificates folder relative to workspace root"
+      "description": "Path to the certificates folder relative to workspace root (supports .crt, .pem, .cer, .p7b files)"
     },
     "updateCaBundle": {
       "type": "boolean",
@@ -37,10 +50,17 @@
     "verboseLogging": {
       "type": "boolean",
       "default": false,
-      "description": "Enable verbose logging for certificate installation"
+      "description": "Enable detailed logging during certificate installation for troubleshooting corporate network issues"
     }
   },
   "installsAfter": [],
   "init": true,
-  "privileged": true
+  "privileged": true,
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}/.devcontainer/certs",
+      "target": "/tmp/host-certs",
+      "type": "bind"
+    }
+  ]
 }
