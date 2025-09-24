@@ -106,13 +106,29 @@ install_java() {
             ;;
     esac
     
+    # Detect actual JAVA_HOME if not set correctly
+    if [ ! -d "$JAVA_HOME" ]; then
+        echo "Warning: JAVA_HOME $JAVA_HOME does not exist, detecting actual path..."
+        JAVA_HOME=$(java -XshowSettings:properties -version 2>&1 | grep 'java.home' | awk '{print $3}' | head -1)
+        echo "Detected JAVA_HOME: $JAVA_HOME"
+    fi
+    
     # Set JAVA_HOME in profile
     echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/environment
     echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> /etc/environment
     
+    # Also create a profile script for immediate availability
+    cat > /etc/profile.d/java.sh << EOF
+#!/bin/bash
+export JAVA_HOME=${JAVA_HOME}
+export PATH=\$JAVA_HOME/bin:\$PATH
+EOF
+    chmod +x /etc/profile.d/java.sh
+    
     # Verify installation
     java_version=$(java -version 2>&1 | head -n 1)
     echo "Java installed: ${java_version}"
+    echo "JAVA_HOME set to: ${JAVA_HOME}"
 }
 
 # Install Maven if requested

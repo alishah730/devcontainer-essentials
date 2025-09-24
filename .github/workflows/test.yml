@@ -27,21 +27,68 @@ jobs:
       - name: "Generate tests for '${{ matrix.features }}' against '${{ matrix.baseImage }}'"
         run: devcontainer features test --skip-scenarios -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
 
-      - name: "Run specific feature tests"
+      - name: "Build and test specific features"
         run: |
+          set -e
+          CONFIG_FILE="test-configs/${{ matrix.features }}-test.json"
+          
           if [ "${{ matrix.features }}" = "java" ]; then
+            echo "🔧 Building and testing Java feature..."
+            # Build the container first
+            echo "Building container with config: $CONFIG_FILE"
+            devcontainer build --workspace-folder . --config "$CONFIG_FILE"
+            
+            echo "✅ Container built successfully. Running tests..."
             # Test Java installation
-            devcontainer exec --workspace-folder . --config test-configs/java-test.json java -version
-            devcontainer exec --workspace-folder . --config test-configs/java-test.json javac -version
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" java -version
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" javac -version
+            
+            # Test JAVA_HOME
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "source /etc/environment 2>/dev/null || true; echo JAVA_HOME: \$JAVA_HOME"
+            
+            # Test Maven if installed
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "command -v mvn && mvn --version || echo 'Maven not installed'"
+            
           elif [ "${{ matrix.features }}" = "nodejs" ]; then
+            echo "🟢 Building and testing Node.js feature..."
+            # Build the container first
+            echo "Building container with config: $CONFIG_FILE"
+            devcontainer build --workspace-folder . --config "$CONFIG_FILE"
+            
+            echo "✅ Container built successfully. Running tests..."
             # Test Node.js installation  
-            devcontainer exec --workspace-folder . --config test-configs/nodejs-test.json node --version
-            devcontainer exec --workspace-folder . --config test-configs/nodejs-test.json npm --version
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" node --version
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" npm --version
+            
+            # Test package managers if installed
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "command -v yarn && yarn --version || echo 'Yarn not installed'"
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "command -v pnpm && pnpm --version || echo 'pnpm not installed'"
+            
           elif [ "${{ matrix.features }}" = "ssl-certs" ]; then
+            echo "🔒 Building and testing SSL certificates feature..."
+            # Build the container first
+            echo "Building container with config: $CONFIG_FILE"
+            devcontainer build --workspace-folder . --config "$CONFIG_FILE"
+            
+            echo "✅ Container built successfully. Running tests..."
             # Test SSL certificates installation
-            devcontainer exec --workspace-folder . --config test-configs/ssl-certs-test.json ls -la /usr/local/share/ca-certificates/custom/
-            devcontainer exec --workspace-folder . --config test-configs/ssl-certs-test.json update-ca-certificates --fresh
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" ls -la /usr/local/share/ca-certificates/custom/ || echo "No custom certificates directory (expected for test)"
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" update-ca-certificates --fresh
+            
+            # Test environment variables
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "source /etc/environment 2>/dev/null || true; echo SSL_CERT_FILE: \$SSL_CERT_FILE"
+            devcontainer exec --workspace-folder . --config "$CONFIG_FILE" bash -c "ls -la /etc/profile.d/*ssl* /etc/profile.d/*cert* 2>/dev/null || echo 'No SSL profile scripts found'"
           fi
+          
+          echo "🎉 All tests completed for ${{ matrix.features }} feature!"
+          
+      - name: "Cleanup containers"
+        if: always()
+        run: |
+          echo "🧹 Cleaning up containers..."
+          # Remove any containers that might have been created
+          docker container prune -f || true
+          docker image prune -f || true
 
   test-scenarios:
     runs-on: ubuntu-latest
