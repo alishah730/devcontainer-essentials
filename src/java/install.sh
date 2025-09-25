@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "Activating feature 'color'"
+echo "Activating feature 'color' -- ${VERSION}"
 echo "The provided favorite color is: ${FAVORITE}"
 
 
@@ -22,5 +22,7 @@ cat > /usr/local/bin/java \
 #!/bin/sh
 echo "my favorite color is ${FAVORITE}"
 EOF
+
+echo "The version of Java installed is: ${VERSION}"
 
 chmod +x /usr/local/bin/java

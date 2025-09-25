@@ -9,7 +9,8 @@
                 "username": "octocat"
             },
             "java": {
-                "favorite": "green"
+                "favorite": "green",
+                "version": "17"
             }
         },
         "remoteUser": "octocat"
@@ -18,7 +19,8 @@
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "java": {
-                "favorite": "gold"
+                "favorite": "gold",
+                "version": "11"
             }
         }
     },
@@ -26,7 +28,8 @@
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "java": {
-                "favorite": "green"
+                "favorite": "green",
+                "version": "16"
             }
         }
     }

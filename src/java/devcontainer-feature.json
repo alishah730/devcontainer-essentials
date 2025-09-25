@@ -13,6 +13,18 @@
           ],
           "default": "red",
           "description": "Choose your favorite color."
+      },
+      "version": {
+          "type": "string",
+          "enum": [
+              "11",
+              "16",
+              "8",
+              "17",
+              "21"
+          ],
+          "default": "11",
+          "description": "Choose the version of Java to install."
       }
   },
   "installsAfter": [
