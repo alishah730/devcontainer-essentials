@@ -1,18 +1,32 @@
 {
-    
-    "install_latest_version": {
-        "image": "ubuntu:noble",
+    "my_favorite_color_is_green": {
+        "image": "mcr.microsoft.com/devcontainers/base:focal",
         "features": {
-            "java": {
-                "version": "latest"
+            "ghcr.io/devcontainers/features/common-utils:1": {
+                "installZsh": false,
+                "installOhMyZsh": false,
+                "upgradePackages": false,
+                "username": "octocat"
+            },
+            "color": {
+                "favorite": "green"
+            }
+        },
+        "remoteUser": "octocat"
+    },
+    "gold": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "color": {
+                "favorite": "gold"
             }
         }
     },
-    "install_non_default_version": {
-        "image": "ubuntu:noble",
+    "green": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "java": {
-                "version": "16"
+            "color": {
+                "favorite": "green"
             }
         }
     }

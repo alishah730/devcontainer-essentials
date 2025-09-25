@@ -1,79 +1,21 @@
 {
+  "name": "My Favorite Color",
   "id": "java",
-  "version": "1.0.0",
-  "name": "java from devcontainer-essentials",
-  "description": "Install Java Development Kit with support for OpenJDK and Eclipse Temurin distributions. Includes optional Apache Maven and Gradle build tools. Supports Java versions 8, 11, 16, 17, 21, and latest with automatic JAVA_HOME configuration.",
-  "documentationURL": "https://github.com/alishah730/devcontainer-essentials/tree/main/src/java",
-  "licenseURL": "https://github.com/alishah730/devcontainer-essentials/blob/main/LICENSE",
-  "keywords": [
-    "java",
-    "jdk",
-    "openjdk",
-    "temurin",
-    "eclipse",
-    "adoptium",
-    "maven",
-    "gradle",
-    "spring",
-    "springboot",
-    "android",
-    "kotlin",
-    "scala",
-    "development",
-    "programming",
-    "build",
-    "compiler",
-    "javac",
-    "enterprise",
-    "backend",
-    "microservices"
-  ],
+  "version": "1.0.3",
+  "description": "A feature to remind you of your favorite color",
   "options": {
-    "version": {
-      "type": "string",
-      "proposals": [
-        "8",
-        "11",
-        "17",
-        "16",
-        "21",
-        "latest"
-      ],
-      "default": "latest",
-      "description": "Select Java version: 8 (legacy), 11 (LTS), 16, 17 (LTS), 21 (LTS), or latest (recommended for new projects)"
-    },
-    "installMaven": {
-      "type": "boolean",
-      "default": true,
-      "description": "Install Apache Maven build automation and project management tool for Java projects"
-    },
-    "installGradle": {
-      "type": "boolean",
-      "default": false,
-      "description": "Install Gradle modern build automation tool with Kotlin DSL support"
-    },
-    "jdkDistro": {
-      "type": "string",
-      "proposals": [
-        "openjdk",
-        "temurin"
-      ],
-      "default": "openjdk",
-      "description": "Java distribution: 'openjdk' (default system packages) or 'temurin' (Eclipse Adoptium - recommended for enterprise)"
-    }
-  },
-  "containerEnv": {
-    "JAVA_HOME": "/usr/lib/jvm/java-${version}-openjdk-amd64"
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "vscjava.vscode-java-pack",
-        "redhat.java"
-      ]
-    }
+      "favorite": {
+          "type": "string",
+          "enum": [
+              "red",
+              "gold",
+              "green"
+          ],
+          "default": "red",
+          "description": "Choose your favorite color."
+      }
   },
   "installsAfter": [
-    "ghcr.io/devcontainers/features/common-utils"
+      "ghcr.io/devcontainers/features/common-utils"
   ]
 }
