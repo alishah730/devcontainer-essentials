@@ -17,10 +17,10 @@ echo "The effective dev container remoteUser's home directory is '$_REMOTE_USER_
 echo "The effective dev container containerUser is '$_CONTAINER_USER'"
 echo "The effective dev container containerUser's home directory is '$_CONTAINER_USER_HOME'"
 
-cat > /usr/local/bin/color \
+cat > /usr/local/bin/java \
 << EOF
 #!/bin/sh
 echo "my favorite color is ${FAVORITE}"
 EOF
 
-chmod +x /usr/local/bin/color
+chmod +x /usr/local/bin/java
